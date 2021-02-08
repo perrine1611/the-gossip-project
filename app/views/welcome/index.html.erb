@@ -1,0 +1,15 @@
+<h1>Welcome</h1>
+<h2> Bienvenue  </h2>
+
+<p>
+
+<h3> Voici les derniers potins : </h3>
+
+<%Gossip.all.each do |gossip|%>
+<br>
+Gossip n° <%=gossip.id%> <br>
+Titre : <%=gossip.title%> <br>
+Auteur: <%=User.find(gossip.user_id).first_name%> <br>
+<%end%>
+
+</p>

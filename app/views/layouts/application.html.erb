@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+    <title>TheGossipProject</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" <%= link_to "The Gossip Project", welcome_index_path %> </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      
+    <div class="navbar-nav">
+         <a class="nav-link" <%= link_to "Accueil", welcome_index_path %> </a>
+        <a class="nav-link"<%= link_to "Equipe", static_pages_team_path %> </a>
+        <a class ="nav-link"<%= link_to "Contact",static_pages_contact_path %></a>
+
+      </div>
+    </div>
+  </nav>
+
+  </head>
+
+  <body>
+    <%= yield %>
+
+  </body>
+</html>
