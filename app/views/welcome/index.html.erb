@@ -1,7 +1,9 @@
 <h1>Welcome</h1>
-<h2> Bienvenue  </h2>
+<h2> Bienvenue <%= params["first_name"] %> ! </h2>
 
-<p>
+<p> Ici c'est notre super site de potins, il est chouette, non ? </p>
+
+<br>
 
 <h3> Voici les derniers potins : </h3>
 
@@ -11,5 +13,3 @@ Gossip n° <%=gossip.id%> <br>
 Titre : <%=gossip.title%> <br>
 Auteur: <%=User.find(gossip.user_id).first_name%> <br>
 <%end%>
-
-</p>
