@@ -2,5 +2,4 @@
 <br>
 Voici le lien: http://localhost:3000/welcome/index <br>
 <br>
-
-
+Rails version 6.1.1
