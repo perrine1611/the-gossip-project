@@ -1,26 +1,32 @@
 class GossipController < ApplicationController
 
+ before_action :authenticate_user
+
 	def show
 		@gossip = Gossip.find(params[:id].to_i)
-        @city = City.find(@gossip.user.city_id)
+    @city = City.find(@gossip.user.city_id)
 	end
 
 	def new
 		@gossip = Gossip.new
-		@user = User.find(params[:id])
+		@user = current_user
 	end
 
 	def create
-  		@gossip = Gossip.new('title' => params[:title], 'content' => params[:content], 'user' => params[:user])
 
-  		if @gossip.save # essaie de sauvegarder en base @gossip
-  		render 'welcome/index' # si ça marche, il redirige vers la page d'index du site
+		@gossip = Gossip.create('title' => params[:title], 'content' => params[:content])
+  		@gossip.user = current_user
+
+  		if @gossip.save
+    	flash[:success] = "Potin bien créé !"
+    	redirect_to root_path
   		
   		else
-  		render 'new' # sinon, il render la view new (qui est celle sur laquelle on est déjà)
-  		end
-	
+    	render :new
+
+ 		end
 	end
+
 
 	def edit
 		@gossip = Gossip.find(params[:id])
@@ -44,5 +50,14 @@ class GossipController < ApplicationController
 		redirect_to gossip_path
 	end
 
+
+  private
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Connectez-vous ou créez un compte"
+      redirect_to new_session_path
+    end
+  end
 
 end

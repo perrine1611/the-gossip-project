@@ -1,11 +1,28 @@
   <h1> Voici le gossip </h1>
   <h2><%= @gossip.title%></h2>
-  <p><%= @gossip.content%></p><br>
+  <h3><%= @gossip.content%></h3><br>
   <p><%= @gossip.created_at.strftime("%e %B %Y à %H:%M:%S")%></p><br>
-  <p><%= @gossip.user.first_name%></p><br>
+  <h5><%= @gossip.user.first_name%></h5><br>
 
+  <br>
+  <br>
+    
   <%= link_to "Voir le profil de l'auteur", user_path(@gossip.user.id) %> <br>
   <br>
   <%= link_to "Voir la ville de l'auteur", city_path(@city.id) %> <br>
   <br>
-  <%= link_to "Ajouter un commentaire", new_comment_path%>
+  <%= link_to "Ajouter un commentaire", new_comment_path%> <br>
+  <br>
+  <%=link_to "Modifier", edit_gossip_path%> <br>
+  <br>
+  <a href="<%= gossip_path(@gossip.id) %>" data-confirm="Vous êtes bien sûr de vouloir supprimer ce gossip à jamais ?"  data-method="DELETE">Supprimer</a>
+  <br>
+  <br>
+  <br>
+
+  <% Comment.all.each do |comment|%>
+    <p> Auteur : <%=comment.author%> </p>
+    <p> Contenu : <%=comment.content%> </p>
+    <p class="btn btn-outline-primary btn-sm"><%= link_to "Afficher le commentaire", comment_path(comment.id) %> </p>
+    <br>
+    <%end%>

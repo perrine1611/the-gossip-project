@@ -2,17 +2,29 @@
 <div class="jumbotron">
 <div class="container_fluid">
 
-<h1> Bienvenue <%= params["first_name"] %> ! </h1>
-
-<p class="center"> Ici c'est notre super site de potins, il est chouette, non ? </p>
-<p class="center> <a> <%= link_to "Créer un gossip", new_gossip_path %> </a> </p>
-
+<% if logged_in?%>
+<h1 class="display-4"> Bienvenue <%= current_user.first_name %> ! </h1>
+<%else%>
+<h1 class="display-4"> Bienvenue sur The Gossip Project ! </h1>
+<%end%>
+<hr class="my-4">
+<p class="lead"> Ici c'est notre super site de potins, il est chouette, non ? </p>
+<p class="lead">
+<a class="btn btn-primary btn-lg" href="/gossip/new" role="button"> Créer un gossip </a>
+</p>
 </div>
 </div>
 
+<% if flash[:success] %>
+<div class="alert alert-success" role="alert"><%= flash[:success] %></div>
+<% elsif flash[:danger] %>
+<div class="alert alert-danger" role="alert"><%= flash[:danger] %></div>
+<% end %>
+
+<h2> Les potins : </h2>
 
 <div class="row m-3">
-  <% @gossip.each do |gossip|%>
+  <% Gossip.all.each do |gossip|%>
   <br>
     <div class="col-sm-4 mt-3">
       <div class="card">

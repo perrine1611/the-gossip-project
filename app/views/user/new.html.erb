@@ -1,0 +1,55 @@
+  
+  <h1> Créer un profil </h1>
+
+<body>
+
+<% if flash[:danger] %>
+<div class="alert alert-danger" role="alert"><%= flash[:danger] %></div>
+<% end %>
+
+<% if @user.errors.any? %>
+      <p>Nous n'avons pas réussi à créer l'utilisateur pour les raisons suivantes: :</p>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+<p> Pour t'inscrire, complète ce formulaire: </p>
+
+    <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+      <%= label_tag 'Prénom :' %>
+      <%= text_field_tag 'first_name', @user.first_name %>
+      <br /> <br />
+  
+      <%= label_tag 'Nom :' %>
+      <%= text_field_tag 'last_name', nil %>
+      <br /> <br />
+
+      <%= label_tag 'Age :' %>
+      <%= text_field_tag 'age', nil %>
+      <br /> <br />
+  
+      <%= label_tag 'Description :' %>
+      <%= text_field_tag 'description', nil %>
+      <br /> <br />
+
+      <%= label_tag 'Ville :' %>
+      <%= select_tag 'city', options_from_collection_for_select(@cities, "id", "name", @user.city)%>
+      <br /> <br />
+      
+      <%= label_tag 'E-mail :' %>
+      <%= text_field_tag 'email', nil %>
+      <br /> <br />
+
+      <%= label_tag 'Mot de passe:' %>
+      <%= password_field_tag 'password', nil %>
+      <br /> <br />
+    
+      <%= submit_tag "Valider" %>
+  
+  <% end %>
+
+</body>

@@ -4,4 +4,7 @@ class CitiesController < ApplicationController
 		@city = City.find(params[:id])
 		@gossip_array = Gossip.joins(:user).where(:user => User.where(city_id: params[:id]))
 	end
+
+	def create
+	end
 end

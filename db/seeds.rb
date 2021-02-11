@@ -6,40 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'faker'
-
-Gossip.destroy_all
-
-gossip_ary = Array.new
-tag_ary = Array.new
 
 #Cities
-10.times do
-  City.create(name: Faker::Address.city, zip_code: Faker::Number.leading_zero_number(digits: 5))
-end
-
-#Users
-20.times do
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, city_id: Faker::Number.between(from: 1, to: 10), email: Faker::Internet.email, age: Faker::Number.between(from: 13, to: 70), description: Faker::Lorem.paragraph(sentence_count: 3, supplemental: true))
-end
-
-#Gossips
-10.times do
-  gossip_ary << Gossip.new(content: Faker::Lorem.paragraph(sentence_count: 5, supplemental: true), title: Faker::TvShows::BreakingBad.episode, user_id: Faker::Number.between(from: 1, to: 10))
-end
-
-#Tags
-10.times do
-  t = Tag.create(title: Faker::Lorem.word)
-  tag_ary << t
-  t.save
-end
-
-gossip_ary.each do |gossip|
-  n = Faker::Number.between(from: 1, to: 5)
-  n.times do
-     gossip.tags << tag_ary.sample 
-  end
-  gossip.save
-end
-
+City.create(name: "Paris", zip_code:"75000")
+City.create(name: "Lille", zip_code:"59000")
+City.create(name: "Lyon", zip_code:"69000")
+City.create(name: "Marseille", zip_code:"13000")
+City.create(name: "Rennes", zip_code:"35000")
+City.create(name: "Strasbourg", zip_code:"67000")
+City.create(name: "Bordeaux", zip_code:"33000")
+City.create(name:"Autre", zip_code: "12345")
