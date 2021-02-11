@@ -1,15 +1,28 @@
-<h1>Welcome</h1>
-<h2> Bienvenue <%= params["first_name"] %> ! </h2>
 
-<p> Ici c'est notre super site de potins, il est chouette, non ? </p>
+<div class="jumbotron">
+<div class="container_fluid">
 
-<br>
+<h1> Bienvenue <%= params["first_name"] %> ! </h1>
 
-<h3> Voici les derniers potins : </h3>
+<p class="center"> Ici c'est notre super site de potins, il est chouette, non ? </p>
+<p class="center> <a> <%= link_to "Créer un gossip", new_gossip_path %> </a> </p>
 
-<%Gossip.all.each do |gossip|%>
-<br>
-Gossip n° <%=gossip.id%> <br>
-Titre : <%=gossip.title%> <br>
-Auteur: <%=User.find(gossip.user_id).first_name%> <br>
-<%end%>
+</div>
+</div>
+
+
+<div class="row m-3">
+  <% @gossip.each do |gossip|%>
+  <br>
+    <div class="col-sm-4 mt-3">
+      <div class="card">
+        <div class="card-body text-center mx-auto">
+          <h5 class="card-title"> Titre : <%=gossip.title%> </h5>
+          <p class="card-text"> Auteur : <%=gossip.user.first_name%> </p>
+          <p class="btn btn-outline-primary btn-sm"> <%= link_to "Afficher le potin", gossip_path(gossip.id) %> </p>
+        </div>
+      </div>
+    </div>
+    <%end%>
+  </div>
+  

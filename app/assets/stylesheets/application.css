@@ -14,15 +14,26 @@
  *= require_self
  */
 
+* {
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+}
 
-h1,h2{
+
+h1{
   text-align: center;
+  font-size: 40px;
+  padding: 15px;
 }
 
-col-sm-6{
-  margin: 0;
+h2{
+	text-align: center;
+	font-size: 30px;
+	padding: 10px;
 }
+
 
 p{
 	margin:10px;
+	font-size: 15px;
 }

@@ -1,0 +1,14 @@
+<h1>Ville n° <%=@city.id%> </h1>
+
+   <h2>Nom : <%= @city.name%></h2>
+
+   <h3> Voici les potins de cette ville: </h3>
+
+   <% @gossip_array.each do |gossip| %>
+   
+   Gossip n° : <%=gossip.id%> <br>
+   Titre : <%=gossip.title%> <br>
+   Auteur : <%=gossip.user.first_name%> <br>
+   <%= link_to "Afficher le potin", gossip_path(gossip.id) %> <br>
+   <br>
+   <%end%>

@@ -1,0 +1,22 @@
+
+<h2> Edition du gossip n°<%=@gossip.id%></h2>
+
+<body>
+
+      <%= form_tag url_for(action: 'update'), method: "patch" do %>
+        
+        <p><%= label_tag 'Titre du gossip' %></p>
+        <%= text_field_tag 'title', value = @gossip.title%>
+    
+        <p><%= label_tag 'Contenu du gossip' %></p>
+        <%= text_field_tag 'content', value = @gossip.content%>
+           
+           </br>
+
+        <%= submit_tag "Valider"%>
+
+      <% end %>
+    </div>
+
+
+</body>

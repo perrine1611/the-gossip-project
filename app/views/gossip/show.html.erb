@@ -1,0 +1,11 @@
+  <h1> Voici le gossip </h1>
+  <h2><%= @gossip.title%></h2>
+  <p><%= @gossip.content%></p><br>
+  <p><%= @gossip.created_at.strftime("%e %B %Y à %H:%M:%S")%></p><br>
+  <p><%= @gossip.user.first_name%></p><br>
+
+  <%= link_to "Voir le profil de l'auteur", user_path(@gossip.user.id) %> <br>
+  <br>
+  <%= link_to "Voir la ville de l'auteur", city_path(@city.id) %> <br>
+  <br>
+  <%= link_to "Ajouter un commentaire", new_comment_path%>
